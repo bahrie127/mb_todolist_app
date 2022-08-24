@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todolist_app/archive_page.dart';
+import 'package:flutter_todolist_app/home_page.dart';
 import 'package:flutter_todolist_app/models/task.dart';
 import 'package:flutter_todolist_app/widgets/card_widget.dart';
 import 'package:flutter_todolist_app/widgets/form_widget.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class ArchivePage extends StatefulWidget {
+  const ArchivePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<ArchivePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  final newList = listTask.where((element) => !element.isDone).toList();
+class _HomePageState extends State<ArchivePage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final newList = listTask.where((element) => element.isDone).toList();
     return Scaffold(
       body: SizedBox(
         width: size.width,
@@ -41,47 +41,33 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
                     SizedBox(
                       height: 60,
                     ),
-                    Text(
-                      'Todo App',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 36,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    // Center(
+                    //   child: Text(
+                    //     'Todo App',
+                    //     style: TextStyle(
+                    //       color: Colors.white,
+                    //       fontSize: 36,
+                    //       fontWeight: FontWeight.bold,
+                    //     ),
+                    //   ),
+                    // ),
                     SizedBox(
-                      height: 8,
+                      height: 16,
                     ),
-                    ListTile(
-                      leading: Text(
-                        '26',
+                    Center(
+                      child: Text(
+                        'Archives',
                         style: TextStyle(
-                          fontSize: 52,
-                          color: Colors.amber,
-                        ),
+                            color: Colors.white70,
+                            fontSize: 52,
+                            fontWeight: FontWeight.w800),
                       ),
-                      title: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 4.0),
-                        child: Text(
-                          'Agustus',
-                          style: TextStyle(
-                            fontSize: 24,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      subtitle: Text(
-                        '2022',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                    )
                   ],
                 ),
               ),
@@ -106,7 +92,6 @@ class _HomePageState extends State<HomePage> {
                       top: 8,
                     ),
                     itemBuilder: (context, index) {
-                      
                       return CardWidget(
                         task: newList[index],
                       );
@@ -133,25 +118,25 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.list_alt_rounded,
-                color: Colors.white,
-                size: 28,
-              ),
-            ),
-            IconButton(
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (_) {
-                      return const ArchivePage();
+                      return const HomePage();
                     },
                   ),
                 );
               },
               icon: const Icon(
-                Icons.archive_outlined,
+                Icons.list_alt_outlined,
+                color: Colors.white,
+                size: 28,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.archive_rounded,
                 color: Colors.white,
                 size: 28,
               ),
